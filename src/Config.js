@@ -79,7 +79,7 @@ ConfigSheet.prototype.show = function show() {
   template.json = this.get('json');
 
   var output = template.evaluate();
-  output.setWidth(500);
+  output.setWidth(700);
   output.setHeight(500);
   SpreadsheetApp.getUi().showModalDialog(output, 'Sheet Configuration');
 };
