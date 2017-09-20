@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      function callback() {
+        var json = $('#json').val();
+        try {
+          JSON.parse(json);
+        } catch (error) {
+          if (error instanceof SyntaxError) {
+            alert('JSON Syntax Error');
+          }
+          throw error;
+        }
+
+        google.script.run
+          .withSuccessHandler(success)
+          .withFailureHandler(failure)
+          .configSheetCallback(json);
+      }
+
+      function success() {
+        google.script.host.close();
+      }
+
+      function failure(error) {
+        alert('ERROR: ' + error.message);
+      }
+    </script>
+  </head>
+  <body>
+    <textarea id="json" rows="35" cols="75"><?= json ?></textarea><br />
+    <button onclick="callback();">Ok</button>
+    <button onclick="google.script.host.close();">Cancel</button>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+  </body>
+</html>
