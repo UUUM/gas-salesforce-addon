@@ -6,6 +6,7 @@ function addMenu() {
         .addItem('Query', 'configQueryShow')
         .addItem('API', 'configApiShow')
     )
+    .addItem('Query All', 'querySheetAll')
     .addItem('Authenticate', 'sfAuthShow')
     .addToUi();
 }

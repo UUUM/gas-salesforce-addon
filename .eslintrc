@@ -16,6 +16,9 @@
 
     // Our classes
     ConfigApi: true,
+    ConfigQuery: true,
+    Obj: true,
+    Salesforce: true,
 
     // test function
     testRunner: true,
