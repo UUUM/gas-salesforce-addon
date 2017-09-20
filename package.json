@@ -1,0 +1,8 @@
+{
+  "description": "google apps script salesforce addon",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:UUUM/gas-salesforce-addon.git"
+  },
+  "license": "Apache-2.0"
+}
