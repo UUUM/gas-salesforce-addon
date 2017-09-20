@@ -1,19 +1,11 @@
-function configApiShow() {
-  var config = new Config();
-  var template = HtmlService.createTemplateFromFile('configApi');
-  template.version = config.get('apiVersion');
-  template.clientId = config.get('apiClientId');
-  template.clientSecret = config.get('apiClientSecret');
-  SpreadsheetApp.getUi().showModalDialog(template.evaluate(), 'API Configuration');
+function configApiCallback(version, clientId, clientSecret) {
+  (new ConfigApi()).callback(version, clientId, clientSecret);
 }
 
-function configApiUpdate(version, clientId, clientSecret) {
-  (new Config())
-    .set('apiVersion', version)
-    .set('apiClientId', clientId)
-    .set('apiClientSecret', clientSecret);
-  return true;
+function configApiShow() {
+  (new ConfigApi()).show();
 }
+
 
 var Config = function Config() {
   this.keyPrefix = 'sfAddon';
@@ -33,4 +25,27 @@ Config.prototype.set = function set(key, value) {
   return this;
 };
 
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(config(Api)(Show|Update))$" }] */
+
+var ConfigApi = function ConfigApi() {
+  Config.call(this);
+  this.keyPrefix += 'Api';
+};
+
+ConfigApi.prototype = Object.create(Config.prototype);
+ConfigApi.prototype.constructor = ConfigApi;
+
+ConfigApi.prototype.callback = function callback(version, clientId, clientSecret) {
+  this.set('version', version);
+  this.set('clientId', clientId);
+  this.set('clientSecret', clientSecret);
+};
+
+ConfigApi.prototype.show = function show() {
+  var template = HtmlService.createTemplateFromFile('configApi');
+  template.version = this.get('version');
+  template.clientId = this.get('clientId');
+  template.clientSecret = this.get('clientSecret');
+  SpreadsheetApp.getUi().showModalDialog(template.evaluate(), 'API Configuration');
+};
+
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(config(Api)(Callback|Show))$" }] */

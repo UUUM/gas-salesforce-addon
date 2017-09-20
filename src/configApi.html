@@ -2,21 +2,21 @@
   <head>
     <meta charset="UTF-8" />
     <script>
-      function update() {
+      function callback() {
         var version = $('#version').val();
         var clientId = $('#clientId').val();
         var clientSecret = $('#clientSecret').val();
         google.script.run
-          .withSuccessHandler(updateSuccess)
-          .withFailureHandler(updateFailure)
-          .configApiUpdate(version, clientId, clientSecret);
+          .withSuccessHandler(success)
+          .withFailureHandler(failure)
+          .configApiCallback(version, clientId, clientSecret);
       }
 
-      function updateSuccess() {
+      function success() {
         google.script.host.close();
       }
 
-      function updateFailure(error) {
+      function failure(error) {
         alert('ERROR: ' + error.message);
       }
     </script>
@@ -25,7 +25,7 @@
     <label>Version</label>: <input id="version" type="text" value="<?= version ?>" /><br />
     <label>Client Id:</label>: <input id="clientId" type="text" value="<?= clientId ?>" /><br />
     <label>Client Secret</label>: <input id="clientSecret" type="text" value="<?= clientSecret ?>" /><br />
-    <button onclick="update();">Ok</button>
+    <button onclick="callback();">Ok</button>
     <button onclick="google.script.host.close();">Cancel</button>
 
     <script
