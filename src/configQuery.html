@@ -16,7 +16,7 @@
         google.script.run
           .withSuccessHandler(success)
           .withFailureHandler(failure)
-          .configSheetCallback(json);
+          .configQueryCallback(json);
       }
 
       function success() {

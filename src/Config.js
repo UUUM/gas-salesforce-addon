@@ -6,12 +6,12 @@ function configApiShow() {
   (new ConfigApi()).show();
 }
 
-function configSheetCallback(json) {
-  (new ConfigSheet()).callback(json);
+function configQueryCallback(json) {
+  (new ConfigQuery()).callback(json);
 }
 
-function configSheetShow() {
-  (new ConfigSheet()).show();
+function configQueryShow() {
+  (new ConfigQuery()).show();
 }
 
 
@@ -62,26 +62,26 @@ ConfigApi.prototype.show = function show() {
 };
 
 
-var ConfigSheet = function ConfigSheet() {
+var ConfigQuery = function ConfigQuery() {
   Config.call(this);
-  this.keyPrefix += 'Sheet';
+  this.keyPrefix += 'Query';
 };
 
-ConfigSheet.prototype = Object.create(Config.prototype);
-ConfigSheet.prototype.constructor = ConfigSheet;
+ConfigQuery.prototype = Object.create(Config.prototype);
+ConfigQuery.prototype.constructor = ConfigQuery;
 
-ConfigSheet.prototype.callback = function callback(json) {
+ConfigQuery.prototype.callback = function callback(json) {
   this.set('json', json);
 };
 
-ConfigSheet.prototype.show = function show() {
-  var template = HtmlService.createTemplateFromFile('configSheet');
+ConfigQuery.prototype.show = function show() {
+  var template = HtmlService.createTemplateFromFile('configQuery');
   template.json = this.get('json');
 
   var output = template.evaluate();
   output.setWidth(700);
   output.setHeight(500);
-  SpreadsheetApp.getUi().showModalDialog(output, 'Sheet Configuration');
+  SpreadsheetApp.getUi().showModalDialog(output, 'Query Configuration');
 };
 
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(config(Api|Sheet)(Callback|Show))$" }] */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(config(Api|Query)(Callback|Show))$" }] */

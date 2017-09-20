@@ -3,7 +3,7 @@ function addMenu() {
   ui.createAddonMenu()
     .addSubMenu(
       ui.createMenu('Configuration')
-        .addItem('sheet', 'configSheetShow')
+        .addItem('Query', 'configQueryShow')
         .addItem('API', 'configApiShow')
     )
     .addItem('Authenticate', 'sfAuthShow')
