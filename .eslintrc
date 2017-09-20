@@ -1,0 +1,15 @@
+{
+  globals: {
+    // Google Apps Script
+    Logger: true,
+
+    // External Libraries
+    GasTap: true,
+
+    // Our classes
+
+    // test function
+    testRunner: true,
+  },
+  extends: 'airbnb-es5',
+}
