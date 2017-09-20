@@ -7,11 +7,8 @@ function addMenu() {
         .addItem('schedule', 'menuConfigurationSchedule')
         .addItem('API', 'configApiShow')
     )
-    .addItem('Authenticate', 'menuAuthenticate')
+    .addItem('Authenticate', 'sfAuthShow')
     .addToUi();
-}
-
-function menuAuthenticate() {
 }
 
 function menuConfigurationSchedule() {

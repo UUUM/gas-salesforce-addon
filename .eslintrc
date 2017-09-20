@@ -12,8 +12,10 @@
 
     // External Libraries
     GasTap: true,
+    SalesforceLib: true,
 
     // Our classes
+    ConfigApi: true,
 
     // test function
     testRunner: true,
