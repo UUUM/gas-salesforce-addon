@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      function update() {
+        var version = $('#version').val();
+        var clientId = $('#clientId').val();
+        var clientSecret = $('#clientSecret').val();
+        google.script.run
+          .withSuccessHandler(updateSuccess)
+          .withFailureHandler(updateFailure)
+          .configApiUpdate(version, clientId, clientSecret);
+      }
+
+      function updateSuccess() {
+        google.script.host.close();
+      }
+
+      function updateFailure(error) {
+        alert('ERROR: ' + error.message);
+      }
+    </script>
+  </head>
+  <body>
+    <label>Version</label>: <input id="version" type="text" value="<?= version ?>" /><br />
+    <label>Client Id:</label>: <input id="clientId" type="text" value="<?= clientId ?>" /><br />
+    <label>Client Secret</label>: <input id="clientSecret" type="text" value="<?= clientSecret ?>" /><br />
+    <button onclick="update();">Ok</button>
+    <button onclick="google.script.host.close();">Cancel</button>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+  </body>
+</html>
