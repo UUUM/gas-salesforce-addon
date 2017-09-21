@@ -20,6 +20,7 @@ Salesforce.getObject = function getObject() {
   var clientId = config.get('clientId');
   var clientSecret = config.get('clientSecret');
   Salesforce.object = new SalesforceLib.Salesforce(version, clientId, clientSecret);
+  Salesforce.object.client.oauth2.setCallback('sfAuthCallback');
   return Salesforce.object;
 };
 
@@ -32,9 +33,7 @@ Salesforce.prototype.getObject = function getObject() {
 };
 
 Salesforce.prototype.show = function show() {
-  var sf = this.getObject();
-  sf.client.oauth2.setCallback('sfAuthCallback');
-  SpreadsheetApp.getActive().show(sf.doGet());
+  SpreadsheetApp.getActive().show(this.getObject().doGet());
 };
 
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^sfAuth(Callback|Show)$" }] */
