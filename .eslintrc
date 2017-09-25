@@ -4,6 +4,7 @@
     HtmlService: true,
     Logger: true,
     PropertiesService: true,
+    ScriptApp: true,
     SpreadsheetApp: true,
 
     // triggers
@@ -19,9 +20,11 @@
     ConfigQuery: true,
     Obj: true,
     Salesforce: true,
+    Spreadsheet: true,
 
-    // test function
+    // for test
     testRunner: true,
+    TestCommon: true,
 
     // menu
     addMenu: true,

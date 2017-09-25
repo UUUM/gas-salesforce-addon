@@ -6,9 +6,17 @@ function addMenu() {
         .addItem('Query', 'configQueryShow')
         .addItem('API', 'configApiShow')
     )
-    .addItem('Query All', 'querySheetAll')
+    .addItem('Fetch All', 'fetchAll')
     .addItem('Authenticate', 'sfAuthShow')
+    .addItem('Schedule', 'schedule')
     .addToUi();
 }
 
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(addMenu|menu(Authenticate|Configuration(API|Schedule|Sheet)))$" }] */
+function schedule() {
+  ScriptApp.newTrigger('fetchAll')
+    .timeBased()
+    .everyHours(1)
+    .create();
+}
+
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(addMenu|schedule)$" }] */
