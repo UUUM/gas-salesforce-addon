@@ -17,7 +17,10 @@ function configQueryShow() {
 
 var Config = function Config() {
   this.keyPrefix = 'sfAddon';
-  this.setProperties(PropertiesService.getDocumentProperties());
+
+  if (!this.getProperties()) {
+    this.setProperties(PropertiesService.getDocumentProperties());
+  }
 };
 
 Config.prototype.get = function get(key) {
