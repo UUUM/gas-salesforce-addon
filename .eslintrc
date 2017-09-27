@@ -16,6 +16,7 @@
     SalesforceLib: true,
 
     // Our classes
+    Config: true,
     ConfigApi: true,
     ConfigQuery: true,
     Obj: true,

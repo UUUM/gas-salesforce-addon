@@ -17,7 +17,7 @@ function configQueryShow() {
 
 var Config = function Config() {
   this.keyPrefix = 'sfAddon';
-  this.properties = PropertiesService.getDocumentProperties();
+  this.setProperties(PropertiesService.getDocumentProperties());
 };
 
 Config.prototype.get = function get(key) {
@@ -33,8 +33,22 @@ Config.prototype.getKey = function getKey(key) {
   return this.keyPrefix + key[0].toUpperCase() + key.substring(1);
 };
 
+Config.prototype.getProperties = function getProperties() {
+  return this.properties;
+};
+
+Config.prototype.remove = function remove(key) {
+  this.properties.deleteProperty(this.getKey(key));
+  return this;
+};
+
 Config.prototype.set = function set(key, value) {
   this.properties.setProperty(this.getKey(key), value);
+  return this;
+};
+
+Config.prototype.setProperties = function setProperties(properties) {
+  this.properties = properties;
   return this;
 };
 
@@ -51,6 +65,7 @@ ConfigApi.prototype.callback = function callback(version, clientId, clientSecret
   this.set('version', version);
   this.set('clientId', clientId);
   this.set('clientSecret', clientSecret);
+  return true;
 };
 
 ConfigApi.prototype.show = function show() {
@@ -72,6 +87,7 @@ ConfigQuery.prototype.constructor = ConfigQuery;
 
 ConfigQuery.prototype.callback = function callback(json) {
   this.set('json', json);
+  return true;
 };
 
 ConfigQuery.prototype.show = function show() {
