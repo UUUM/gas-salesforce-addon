@@ -1,12 +1,11 @@
-testRunner.functions.push(function (test) {
+testRunner.functions.push(function (test, common) {
   var sf;
   var sheet;
   var qb;
   var ss;
 
   function setup() {
-    var common = new TestCommon();
-    sf = common.createSalesforce();
+    sf = Salesforce.getObject();
     sheet = common.getSpreadsheet().getSheetByName('Opportunity');
     qb = (new SalesforceLib.QueryBuilder())
       .from('Opportunity')
@@ -15,7 +14,7 @@ testRunner.functions.push(function (test) {
     ss = new Spreadsheet(sf, sheet, qb);
   }
 
-  test('new Salesforce()', function (assert) {
+  test('new Spreadsheet()', function (assert) {
     setup();
 
     assert.throws(
@@ -47,12 +46,6 @@ testRunner.functions.push(function (test) {
     assert.equal(ss.row, 1, 'has a row property');
     assert.equal(ss.column, 1, 'has a column property');
     assert.ok(ss.hasHeader, 'has a hasHeader property');
-  });
-
-  test('Salesforce.sync()', function () {
-    setup();
-
-    ss.sync();
   });
 });
 

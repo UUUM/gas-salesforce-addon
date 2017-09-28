@@ -8,20 +8,22 @@ function authCallback(request) {
 
 
 var TestCommon = function TestCommon() {
-  var properties = PropertiesService.getScriptProperties();
+  var scriptProperties = PropertiesService.getScriptProperties();
+  var userProperties = PropertiesService.getUserProperties();
+  Config.prototype.properties = userProperties;
+  ConfigApi.prototype.properties = scriptProperties;
+  ConfigQuery.prototype.properties = userProperties;
 
-  this.apiVersion = properties.getProperty('apiVersion');
-  this.apiClientId = properties.getProperty('apiClientId');
-  this.apiClientSecret = properties.getProperty('apiClientSecret');
-  this.spreadsheetId = properties.getProperty('spreadsheetId');
-};
-
-TestCommon.prototype.createSalesforce = function createSalesforce() {
-  return new SalesforceLib.Salesforce(this.apiVersion, this.apiClientId, this.apiClientSecret);
+  this.spreadsheetId = scriptProperties.getProperty('spreadsheetId');
 };
 
 TestCommon.prototype.getSpreadsheet = function getSpreadsheet() {
-  return SpreadsheetApp.openById(this.spreadsheetId);
+  if (this.ss) {
+    return this.ss;
+  }
+
+  this.ss = SpreadsheetApp.openById(this.spreadsheetId);
+  return this.ss;
 };
 
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(doGet|authCallback)$" }] */
