@@ -19,6 +19,7 @@
     Config: true,
     ConfigApi: true,
     ConfigQuery: true,
+    Fetch: true,
     Obj: true,
     Salesforce: true,
     Spreadsheet: true,
