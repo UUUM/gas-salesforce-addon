@@ -1,13 +1,22 @@
 function doGet(e) {
-  return (new TestCommon()).createSalesforce().doGet(e);
+  (new TestCommon()).initialize();
+
+  var sf = Salesforce.getObject();
+  sf.client.oauth2.setCallback('authCallback');
+  return sf.doGet(e);
 }
 
 function authCallback(request) {
-  return (new TestCommon()).createSalesforce().callback(request);
+  (new TestCommon()).initialize();
+  return Salesforce.getObject().callback(request);
 }
 
 
 var TestCommon = function TestCommon() {
+  this.initialize();
+};
+
+TestCommon.prototype.initialize = function getSpreadsheet() {
   var scriptProperties = PropertiesService.getScriptProperties();
   var userProperties = PropertiesService.getUserProperties();
   Config.prototype.properties = userProperties;

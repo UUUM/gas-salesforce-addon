@@ -1,6 +1,8 @@
 function testRunner() {
   var test = new GasTap();
+
   var common = new TestCommon();
+  common.initialize();
 
   var functions = testRunner.functions;
   for (var i = 0; i < functions.length; i++) {
