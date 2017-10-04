@@ -1,14 +1,19 @@
-testRunner.functions.push(function (test) {
+testRunner.functions.push(function (test, common) {
+  Fetch.prototype.ss = common.getSpreadsheet();
+
   var config = {
     Opportunity: {
-      from: 'Opportunity',
-      fields: [
-        'Id',
-        'Name',
-        'Account.Id',
-        'Account.Name'
-      ],
-      limit: 10
+      SheetName: 'Opportunity',
+      FetchBuilderParams: {
+        from: 'Opportunity',
+        fields: [
+          'Id',
+          'Name',
+          'Account.Id',
+          'Account.Name'
+        ],
+        limit: 10
+      }
     }
   };
   (new ConfigQuery()).callback(JSON.stringify(config));
@@ -29,6 +34,11 @@ testRunner.functions.push(function (test) {
 
     var config2 = fetch.getConfig();
     assert.equal(config1, config2, 'returns a same object');
+  });
+
+  test('Fetch.queryByConfig()', function (assert) {
+    var fetch = new Fetch();
+    assert.equal(fetch.queryByConfig(config.Opportunity), fetch, 'returns itself');
   });
 });
 

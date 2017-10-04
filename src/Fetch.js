@@ -18,6 +18,15 @@ Fetch.prototype.getConfig = function getConfig() {
   return this.config;
 };
 
+Fetch.prototype.getSpreadsheet = function getSpreadsheet() {
+  if (this.ss) {
+    return this.ss;
+  }
+
+  this.ss = SpreadsheetApp.getActive();
+  return this.ss;
+};
+
 Fetch.prototype.query = function query(key) {
   this.queryByConfig(this.getConfig()[key]);
 };
@@ -37,7 +46,7 @@ Fetch.prototype.queryAll = function queryAll() {
 
 Fetch.prototype.queryByConfig = function queryByConfig(config) {
   var sf = Salesforce.getObject();
-  var sheet = SpreadsheetApp.getActive().getSheetByName(config.SheetName);
+  var sheet = this.getSpreadsheet().getSheetByName(config.SheetName);
   var qb = (new SalesforceLib.QueryBuilder()).setupByParams(config.FetchBuilderParams);
   var fieldList = qb.fieldList;
   var fieldNum = fieldList.length;
