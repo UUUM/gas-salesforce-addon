@@ -1,16 +1,17 @@
 testRunner.functions.push(function (test) {
-  (new ConfigQuery()).callback('{' +
-    '"Opportunity": {' +
-    '  "from": "Opportunity",' +
-    '  "fields": [' +
-    '    "Id",' +
-    '    "Name",' +
-    '    "Account.Id",' +
-    '    "Account.Name"' +
-    '  ],' +
-    '  "limit": 10' +
-    '}' +
-  '}');
+  var config = {
+    Opportunity: {
+      from: 'Opportunity',
+      fields: [
+        'Id',
+        'Name',
+        'Account.Id',
+        'Account.Name'
+      ],
+      limit: 10
+    }
+  };
+  (new ConfigQuery()).callback(JSON.stringify(config));
 
   test('new Fetch()', function (assert) {
     var fetch = new Fetch();
