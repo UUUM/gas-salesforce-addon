@@ -22,7 +22,6 @@
     Fetch: true,
     Obj: true,
     Salesforce: true,
-    Spreadsheet: true,
 
     // for test
     testRunner: true,
