@@ -1,41 +1,34 @@
-<!DOCTYPE html>
-  <head>
-    <meta charset="UTF-8" />
-    <script>
-      function callback() {
-        var json = $('#json').val();
-        try {
-          JSON.parse(json);
-        } catch (error) {
-          if (error instanceof SyntaxError) {
-            alert('JSON Syntax Error');
-          }
-          throw error;
-        }
-
-        google.script.run
-          .withSuccessHandler(success)
-          .withFailureHandler(failure)
-          .configQueryCallback(json);
+<?!= include('_htmlHeader'); ?>
+<script>
+  function callback() {
+    var json = $('#json').val();
+    try {
+      JSON.parse(json);
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        alert('JSON Syntax Error');
       }
+      throw error;
+    }
 
-      function success() {
-        google.script.host.close();
-      }
+    google.script.run
+      .withSuccessHandler(success)
+      .withFailureHandler(failure)
+      .configQueryCallback(json);
+  }
 
-      function failure(error) {
-        alert('ERROR: ' + error.message);
-      }
-    </script>
-  </head>
-  <body>
-    <textarea id="json" rows="35" cols="100"><?= json ?></textarea><br />
-    <button onclick="callback();">Ok</button>
-    <button onclick="google.script.host.close();">Cancel</button>
+  function success() {
+    google.script.host.close();
+  }
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.min.js"
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
-  </body>
-</html>
+  function failure(error) {
+    alert('ERROR: ' + error.message);
+  }
+</script>
+
+<?!= include('_htmlBody'); ?>
+<textarea id="json" rows="35" cols="100"><?= json ?></textarea><br />
+<button onclick="callback();">Ok</button>
+<button onclick="google.script.host.close();">Cancel</button>
+
+<?!= include('_htmlEnd'); ?>
