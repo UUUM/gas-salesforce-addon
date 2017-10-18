@@ -19,7 +19,14 @@ testRunner.functions.push(function (test, common) {
   (new ConfigQuery()).callback(JSON.stringify(config));
 
   test('new Fetch()', function (assert) {
-    var fetch = new Fetch();
+    assert.throws(
+      function () {
+        return new Fetch();
+      },
+      'throws an exception if sflib was not an SFLib object'
+    );
+
+    var fetch = new Fetch(common.getSFLib());
     assert.ok(fetch instanceof Fetch, 'creates a Fetch object');
     assert.equal(fetch.column, 1, 'has a column property');
     assert.ok(fetch.hasHeader, 'has a hasHeader property');
@@ -27,7 +34,7 @@ testRunner.functions.push(function (test, common) {
   });
 
   test('Fetch.getConfig()', function (assert) {
-    var fetch = new Fetch();
+    var fetch = common.getFetch();
 
     var config1 = fetch.getConfig();
     assert.ok(Obj.isObject(config1), 'returns an object');
@@ -37,7 +44,7 @@ testRunner.functions.push(function (test, common) {
   });
 
   test('Fetch.queryByConfig()', function (assert) {
-    var fetch = new Fetch();
+    var fetch = common.getFetch();
     assert.equal(fetch.queryByConfig(config.Opportunity), fetch, 'returns itself');
   });
 });

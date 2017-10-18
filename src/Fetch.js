@@ -3,7 +3,12 @@ function fetchAll() {
 }
 
 
-var Fetch = function Fetch() {
+var Fetch = function Fetch(sflib) {
+  if (!(sflib instanceof SFLib)) {
+    throw new Error('sflib must be an SFLib object');
+  }
+  this.sflib = sflib;
+
   this.row = 1;
   this.column = 1;
   this.hasHeader = true;
@@ -45,7 +50,6 @@ Fetch.prototype.queryAll = function queryAll() {
 };
 
 Fetch.prototype.queryByConfig = function queryByConfig(config) {
-  var sf = Salesforce.getObject();
   var sheet = this.getSpreadsheet().getSheetByName(config.SheetName);
   var qb = (new SalesforceLib.QueryBuilder()).setupByParams(config.FetchBuilderParams);
   var fieldList = qb.fieldList;
@@ -53,7 +57,7 @@ Fetch.prototype.queryByConfig = function queryByConfig(config) {
   var row = this.row;
   var column = this.column;
 
-  var records = sf.query(qb.getQuery());
+  var records = this.sflib.getAPI().query(qb.getQuery());
   if (records instanceof SalesforceLib.ResponseError) {
     throw records;
   }

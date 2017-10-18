@@ -21,7 +21,7 @@
     ConfigQuery: true,
     Fetch: true,
     Obj: true,
-    Salesforce: true,
+    SFLib: true,
 
     // for test
     testRunner: true,
