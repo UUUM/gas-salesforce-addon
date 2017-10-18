@@ -10,6 +10,15 @@ function sfAuthShow() {
 var SFLib = function SFLib() {
 };
 
+SFLib.getInstance = function getInstance() {
+  if (this.object) {
+    return this.object;
+  }
+
+  this.object = new SFLib();
+  return this.object;
+};
+
 SFLib.prototype.getAPI = function getAPI() {
   if (this.api) {
     return this.api;
