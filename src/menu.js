@@ -4,6 +4,7 @@ function addMenu() {
     .addSubMenu(
       ui.createMenu('Configuration')
         .addItem('Query', 'configQueryShow')
+        .addItem('Schedule', 'configScheduleShow')
         .addItem('API', 'configApiShow')
     )
     .addItem('Fetch All', 'fetchAll')

@@ -1,0 +1,28 @@
+<?!= include('_htmlHeader'); ?>
+<script>
+  function callback() {
+    var schedule = $('input[name=schedule]:checked').val();
+    google.script.run
+      .withSuccessHandler(success)
+      .withFailureHandler(failure)
+      .configScheduleCallback(schedule);
+  }
+
+  function success() {
+    google.script.host.close();
+  }
+
+  function failure(error) {
+    alert('ERROR: ' + error.message);
+  }
+</script>
+
+<?!= include('_htmlBody'); ?>
+<input id="none" type="radio" name="schedule" value="none" <?= schedule === 'none' ? 'checked' : '' ?>  /><label>None</label>
+<input id="hourly" type="radio" name="schedule" value="hourly" <?= schedule === 'hourly' ? 'checked' : '' ?>  /><label>Hourly</label>
+<input id="daily" type="radio" name="schedule" value="daily" <?= schedule === 'daily' ? 'checked' : '' ?>  /><label>Daily</label>
+<input id="weekly" type="radio" name="schedule" value="weekly" <?= schedule === 'weekly' ? 'checked' : '' ?>  /><label>Weekly</label><br />
+<button onclick="callback();">Ok</button>
+<button onclick="google.script.host.close();">Cancel</button>
+
+<?!= include('_htmlEnd'); ?>
