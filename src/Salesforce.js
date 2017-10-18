@@ -19,7 +19,9 @@ Salesforce.getObject = function getObject() {
   var version = config.get('version');
   var clientId = config.get('clientId');
   var clientSecret = config.get('clientSecret');
-  Salesforce.object = new SalesforceLib.Salesforce(version, clientId, clientSecret);
+
+  var client = new SalesforceLib.Client(version, clientId, clientSecret);
+  Salesforce.object = new SalesforceLib.API(client);
   Salesforce.object.client.oauth2.setCallback('sfAuthCallback');
   return Salesforce.object;
 };

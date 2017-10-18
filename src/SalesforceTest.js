@@ -6,10 +6,10 @@ testRunner.functions.push(function (test) {
 
   test('Salesforce.getObject()', function (assert) {
     var sf1 = Salesforce.getObject();
-    assert.ok(sf1 instanceof SalesforceLib.Salesforce, 'returns SalesforceLib.Salesforce object');
+    assert.ok(sf1 instanceof SalesforceLib.API, 'returns SalesforceLib.API object');
 
     var sf2 = (new Salesforce()).getObject();
-    assert.ok(sf2 instanceof SalesforceLib.Salesforce, 'returns SalesforceLib.Salesforce object');
+    assert.ok(sf2 instanceof SalesforceLib.API, 'returns SalesforceLib.API object');
 
     assert.equal(sf1, sf2, 'getObject() returns a same object');
   });
