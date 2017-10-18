@@ -9,15 +9,7 @@ function addMenu() {
     )
     .addItem('Fetch All', 'fetchAll')
     .addItem('Authenticate', 'sfAuthShow')
-    .addItem('Schedule', 'schedule')
     .addToUi();
 }
 
-function schedule() {
-  ScriptApp.newTrigger('fetchAll')
-    .timeBased()
-    .everyHours(1)
-    .create();
-}
-
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(addMenu|schedule)$" }] */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(addMenu)$" }] */
