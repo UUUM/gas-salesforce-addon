@@ -3,12 +3,7 @@ function fetchAll() {
 }
 
 
-var Fetch = function Fetch(sflib) {
-  if (!(sflib instanceof SFLib)) {
-    throw new Error('sflib must be an SFLib object');
-  }
-  this.sflib = sflib;
-
+var Fetch = function Fetch() {
   this.row = 1;
   this.column = 1;
   this.hasHeader = true;
@@ -57,7 +52,7 @@ Fetch.prototype.queryByConfig = function queryByConfig(config) {
   var row = this.row;
   var column = this.column;
 
-  var records = this.sflib.getAPI().query(qb.getQuery());
+  var records = SFLib.getInstance().getAPI().query(qb.getQuery());
   if (records instanceof SalesforceLib.ResponseError) {
     throw records;
   }

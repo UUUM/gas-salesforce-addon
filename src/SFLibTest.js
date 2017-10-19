@@ -1,4 +1,4 @@
-testRunner.functions.push(function (test, common) {
+testRunner.functions.push(function (test) {
   test('new SFLib()', function (assert) {
     var sflib = new SFLib();
     assert.ok(sflib instanceof SFLib, 'creates an SFLib object');
@@ -13,21 +13,21 @@ testRunner.functions.push(function (test, common) {
   });
 
   test('SFLib.getAPI()', function (assert) {
-    var sflib = common.getSFLib();
+    var sflib = SFLib.getInstance();
 
     var api = sflib.getAPI();
     assert.ok(api instanceof SalesforceLib.API, 'returns SalesforceLib.API object');
   });
 
   test('SFLib.getClient()', function (assert) {
-    var sflib = common.getSFLib();
+    var sflib = SFLib.getInstance();
 
     var client = sflib.getClient();
     assert.ok(client instanceof SalesforceLib.Client, 'returns SalesforceLib.Client object');
   });
 
   test('SFLib.getOAuth2Client()', function (assert) {
-    var sflib = common.getSFLib();
+    var sflib = SFLib.getInstance();
 
     var oauth2client = sflib.getOAuth2Client();
     assert.ok(oauth2client instanceof SalesforceLib.OAuth2Client, 'returns SalesforceLib.OAuth2Client object');

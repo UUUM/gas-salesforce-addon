@@ -2,7 +2,7 @@ function testRunner() {
   var test = new GasTap();
   var common = new TestCommon();
 
-  if (!common.getSFLib().getClient().hasAccess()) {
+  if (!SFLib.getInstance().getClient().hasAccess()) {
     Logger.log('Authorize by Salesforce, first');
     return;
   }

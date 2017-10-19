@@ -19,14 +19,7 @@ testRunner.functions.push(function (test, common) {
   (new ConfigQuery()).callback(JSON.stringify(config));
 
   test('new Fetch()', function (assert) {
-    assert.throws(
-      function () {
-        return new Fetch();
-      },
-      'throws an exception if sflib was not an SFLib object'
-    );
-
-    var fetch = new Fetch(common.getSFLib());
+    var fetch = new Fetch();
     assert.ok(fetch instanceof Fetch, 'creates a Fetch object');
     assert.equal(fetch.column, 1, 'has a column property');
     assert.ok(fetch.hasHeader, 'has a hasHeader property');

@@ -24,17 +24,12 @@ TestCommon.prototype.getFetch = function getFetch() {
     return this.fetch;
   }
 
-  this.fetch = new Fetch(this.getSFLib());
+  this.fetch = new Fetch();
   return this.fetch;
 };
 
 TestCommon.prototype.getSFLib = function getSFLib() {
-  if (this.sflib) {
-    return this.sflib;
-  }
-
-  this.sflib = new SFLib();
-  return this.sflib;
+  return SFLib.getInstance();
 };
 
 TestCommon.prototype.getSpreadsheet = function getSpreadsheet() {
