@@ -1,5 +1,5 @@
 function onOpen() {
-  addMenu();
+  Menu.setupAddon();
 }
 
 function onInstall(e) {
