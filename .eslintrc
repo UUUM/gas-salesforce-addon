@@ -6,6 +6,7 @@
     PropertiesService: true,
     ScriptApp: true,
     SpreadsheetApp: true,
+    UrlFetchApp: true,
 
     // triggers
     onInstall: true,
@@ -23,6 +24,7 @@
     Menu: true,
     Obj: true,
     SFLib: true,
+    SlackWebhook: true,
 
     // for test
     testRunner: true,
