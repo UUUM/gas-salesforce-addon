@@ -8,12 +8,6 @@ testRunner.functions.push(function (test) {
     assert.equal(config.keyPrefix, 'sfAddonSchedule', 'has a keyPrefix property');
   });
 
-  test('ConfigSchedule.callback()', function (assert) {
-    var config = new ConfigSchedule();
-    assert.ok(config.callback('foo'), 'returns true');
-    assert.equal(config.get('schedule'), 'foo', 'returns a schedule value');
-  });
-
   ConfigSchedule.prototype.properties = orgProperties;
 });
 
