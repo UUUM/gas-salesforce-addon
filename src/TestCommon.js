@@ -1,7 +1,7 @@
-function doGet(e) {
+function doGet() {
   var oauth2client = (new TestCommon()).getSFLib().getOAuth2Client();
   oauth2client.setCallback('authCallback');
-  return oauth2client.doGet(e);
+  return oauth2client.getAuthorizationHtml();
 }
 
 function authCallback(request) {
