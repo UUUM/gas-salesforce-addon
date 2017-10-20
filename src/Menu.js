@@ -27,6 +27,7 @@ Menu.setup = function setup() {
         .addItem('Query', 'configQueryShow')
         .addItem('Schedule', 'configScheduleShow')
         .addItem('API', 'configApiShow')
+        .addItem('Slack', 'configSlackShow')
     )
     .addItem('Fetch All', 'fetchAll')
     .addItem('Authenticate', 'sfAuthShow')

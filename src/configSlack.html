@@ -1,0 +1,25 @@
+<?!= include('_htmlHeader'); ?>
+<script>
+  function callback() {
+    var webhookUrl = $('#webhookUrl').val();
+    google.script.run
+      .withSuccessHandler(success)
+      .withFailureHandler(failure)
+      .configSlackCallback(webhookUrl);
+  }
+
+  function success() {
+    google.script.host.close();
+  }
+
+  function failure(error) {
+    alert('ERROR: ' + error.message);
+  }
+</script>
+
+<?!= include('_htmlBody'); ?>
+<label>Webhook Url</label>: <input id="webhookUrl" type="text" value="<?= webhookUrl ?>" /><br />
+<button onclick="callback();">Ok</button>
+<button onclick="google.script.host.close();">Cancel</button>
+
+<?!= include('_htmlEnd'); ?>

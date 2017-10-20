@@ -21,6 +21,7 @@
     ConfigApi: true,
     ConfigQuery: true,
     ConfigSchedule: true,
+    ConfigSlack: true,
     Fetch: true,
     Menu: true,
     Obj: true,
