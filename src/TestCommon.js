@@ -15,6 +15,8 @@ var TestCommon = function TestCommon() {
   Config.prototype.properties = userProperties;
   ConfigApi.prototype.properties = scriptProperties;
   ConfigQuery.prototype.properties = userProperties;
+  ConfigSchedule.prototype.properties = userProperties;
+  ConfigSlack.prototype.properties = userProperties;
 
   this.spreadsheetId = scriptProperties.getProperty('spreadsheetId');
 };
