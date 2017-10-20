@@ -1,4 +1,3 @@
-// test for Config()
 testRunner.functions.push(function (test) {
   var orgProperties = Config.prototype.properties;
   Config.prototype.properties = PropertiesService.getUserProperties();
@@ -45,50 +44,6 @@ testRunner.functions.push(function (test) {
   });
 
   Config.prototype.properties = orgProperties;
-});
-
-
-// test for ConfigApi()
-testRunner.functions.push(function (test) {
-  var orgProperties = ConfigApi.prototype.properties;
-  ConfigApi.prototype.properties = PropertiesService.getUserProperties();
-
-  test('new ConfigApi()', function (assert) {
-    var config = new ConfigApi();
-    assert.ok(config instanceof ConfigApi, 'creates a ConfigApi object');
-    assert.equal(config.keyPrefix, 'sfAddonApi', 'has a keyPrefix property');
-  });
-
-  test('ConfigApi.callback()', function (assert) {
-    var config = new ConfigApi();
-    assert.ok(config.callback('foo', 'bar', 'baz'), 'returns true');
-    assert.equal(config.get('version'), 'foo', 'returns a version value');
-    assert.equal(config.get('clientId'), 'bar', 'returns a clientId value');
-    assert.equal(config.get('clientSecret'), 'baz', 'returns a clientSecret value');
-  });
-
-  ConfigApi.prototype.properties = orgProperties;
-});
-
-
-// test for ConfigQuery()
-testRunner.functions.push(function (test) {
-  var orgProperties = ConfigQuery.prototype.properties;
-  ConfigQuery.prototype.properties = PropertiesService.getUserProperties();
-
-  test('new ConfigQuery()', function (assert) {
-    var config = new ConfigQuery();
-    assert.ok(config instanceof ConfigQuery, 'creates a ConfigQuery object');
-    assert.equal(config.keyPrefix, 'sfAddonQuery', 'has a keyPrefix property');
-  });
-
-  test('ConfigQuery.callback()', function (assert) {
-    var config = new ConfigQuery();
-    assert.ok(config.callback('{"foo": "bar"}'), 'returns true');
-    assert.deepEqual(config.getJSON('json'), {foo: 'bar'}, 'returns a valid object');
-  });
-
-  ConfigQuery.prototype.properties = orgProperties;
 });
 
 /* eslint func-names: ["error", "never"] */

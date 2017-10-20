@@ -20,6 +20,7 @@
     Config: true,
     ConfigApi: true,
     ConfigQuery: true,
+    ConfigSchedule: true,
     Fetch: true,
     Menu: true,
     Obj: true,
