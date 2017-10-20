@@ -1,12 +1,3 @@
-function sfAuthCallback(request) {
-  return (new SFLib()).getOAuth2Client().callback(request);
-}
-
-function sfAuthShow() {
-  (new SFLib()).show();
-}
-
-
 var SFLib = function SFLib() {
 };
 
@@ -46,9 +37,3 @@ SFLib.prototype.getOAuth2Client = function getOAuth2Client() {
   this.oauth2client = new SalesforceLib.OAuth2Client(config.get('clientId'), config.get('clientSecret'));
   return this.oauth2client;
 };
-
-SFLib.prototype.show = function show() {
-  SpreadsheetApp.getActive().show(this.getOAuth2Client().doGet());
-};
-
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^sfAuth(Callback|Show)$" }] */

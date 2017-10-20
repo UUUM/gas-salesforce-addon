@@ -1,5 +1,9 @@
 function fetchAll() {
-  return (new Fetch()).queryAll();
+  if (!Menu.checkAuth()) {
+    return;
+  }
+
+  (new Fetch()).queryAll();
 }
 
 

@@ -1,15 +1,25 @@
+function sfAuthCallback(request) {
+  return (new SFLib()).getOAuth2Client().callback(request);
+}
+
+function sfAuthShow() {
+  var html = SFLib.getInstance().getOAuth2Client().getAuthorizationHtml();
+  SpreadsheetApp.getUi().showModalDialog(html, 'Authorization');
+}
+
 var Menu = function Menu() {
 };
 
-Menu.setup = function setup() {
+Menu.checkAuth = function checkAuth() {
   if (SFLib.getInstance().getClient().hasAccess()) {
-    Menu.setupAddon();
-  } else {
-    Menu.setupAuth();
+    return true;
   }
+
+  sfAuthShow();
+  return false;
 };
 
-Menu.setupAddon = function setupAddon() {
+Menu.setup = function setup() {
   var ui = SpreadsheetApp.getUi();
   ui.createAddonMenu()
     .addSubMenu(
@@ -23,9 +33,4 @@ Menu.setupAddon = function setupAddon() {
     .addToUi();
 };
 
-Menu.setupAuth = function setMenuAuth() {
-  var ui = SpreadsheetApp.getUi();
-  ui.createAddonMenu()
-    .addItem('Authenticate', 'sfAuthShow')
-    .addToUi();
-};
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^sfAuth(Callback|Show)$" }] */
