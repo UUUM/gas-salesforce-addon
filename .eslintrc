@@ -16,7 +16,7 @@
     GasTap: true,
     SalesforceLib: true,
 
-    // Our classes
+    // Our functions, classes
     Config: true,
     ConfigApi: true,
     ConfigQuery: true,
@@ -24,16 +24,13 @@
     ConfigSlack: true,
     Fetch: true,
     Menu: true,
+    Notifier: true,
     Obj: true,
     SFLib: true,
     SlackWebhook: true,
-
-    // for test
-    testRunner: true,
     TestCommon: true,
-
-    // menu
-    addMenu: true,
+    testRunner: true,
+    triggerCheckAuth: true,
   },
   extends: 'airbnb-es5',
 }

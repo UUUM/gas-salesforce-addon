@@ -6,4 +6,10 @@ function onInstall(e) {
   onOpen(e);
 }
 
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^onInstall$" }] */
+function triggerCheckAuth() {
+  if (!(SFLib.getInstance().getClient().hasAccess())) {
+    (new Notifier()).notify('@channel Salesforce refresh token was expired!!');
+  }
+}
+
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(onInstall|triggerCheckAuth)$" }] */

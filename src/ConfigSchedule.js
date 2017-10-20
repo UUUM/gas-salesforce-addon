@@ -22,7 +22,7 @@ ConfigSchedule.prototype.callback = function callback(schedule) {
 };
 
 ConfigSchedule.prototype.createTrigger = function createTrigger(schedule) {
-  var trigger = ScriptApp.newTrigger('fetchAll').timeBased();
+  var trigger = ScriptApp.newTrigger('triggerFetchAll').timeBased();
   switch (schedule) {
   case 'hourly':
     trigger.everyHours(1);

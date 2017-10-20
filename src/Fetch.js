@@ -2,7 +2,13 @@ function fetchAll() {
   if (!Menu.checkAuth()) {
     return;
   }
+  (new Fetch()).queryAll();
+}
 
+function triggerFetchAll() {
+  if (!triggerCheckAuth()) {
+    return;
+  }
   (new Fetch()).queryAll();
 }
 
@@ -75,7 +81,9 @@ Fetch.prototype.queryByConfig = function queryByConfig(config) {
     row++;
   });
 
+  (new Notifier()).notify(config.SheetName + ' was updated. (' + row + ' rows)');
+
   return this;
 };
 
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^fetchAll$" }] */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(fetchAll|triggerFetchAll)$" }] */
