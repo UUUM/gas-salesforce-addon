@@ -19,6 +19,9 @@ var TestCommon = function TestCommon() {
   ConfigSlack.prototype.properties = userProperties;
 
   this.spreadsheetId = scriptProperties.getProperty('spreadsheetId');
+
+  // clear slack setting
+  (new ConfigSlack()).remove('webhookUrl');
 };
 
 TestCommon.prototype.getFetch = function getFetch() {

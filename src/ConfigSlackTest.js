@@ -14,6 +14,9 @@ testRunner.functions.push(function (test) {
     assert.equal(config.get('webhookUrl'), 'foo', 'returns a webhookUrl value');
   });
 
+  // clear slack setting
+  (new ConfigSlack()).remove('webhookUrl');
+
   ConfigSlack.prototype.properties = orgProperties;
 });
 
