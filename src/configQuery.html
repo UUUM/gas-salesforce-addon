@@ -2,15 +2,6 @@
 <script>
   function callback() {
     var config = $('#config').val();
-    try {
-      JSON.parse(config);
-    } catch (error) {
-      if (error instanceof SyntaxError) {
-        alert('JSON Syntax Error');
-      }
-      throw error;
-    }
-
     google.script.run
       .withSuccessHandler(success)
       .withFailureHandler(failure)
