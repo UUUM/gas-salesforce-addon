@@ -1,5 +1,5 @@
-function configQueryCallback(json) {
-  (new ConfigQuery()).callback(json);
+function configQueryCallback(config) {
+  (new ConfigQuery()).callback(config);
 }
 
 function configQueryShow() {
@@ -15,14 +15,14 @@ var ConfigQuery = function ConfigQuery() {
 ConfigQuery.prototype = Object.create(Config.prototype);
 ConfigQuery.prototype.constructor = ConfigQuery;
 
-ConfigQuery.prototype.callback = function callback(json) {
-  this.set('json', json);
+ConfigQuery.prototype.callback = function callback(config) {
+  this.set('config', config);
   return true;
 };
 
 ConfigQuery.prototype.show = function show() {
   var template = HtmlService.createTemplateFromFile('configQuery');
-  template.json = this.get('json');
+  template.config = this.get('config');
 
   var output = template.evaluate();
   output.setWidth(700);

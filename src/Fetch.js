@@ -24,7 +24,7 @@ Fetch.prototype.getConfig = function getConfig() {
     return this.config;
   }
 
-  this.config = (new ConfigQuery()).getJSON('json');
+  this.config = (new ConfigQuery()).getJSON('config');
   return this.config;
 };
 

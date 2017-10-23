@@ -11,7 +11,7 @@ testRunner.functions.push(function (test) {
   test('ConfigQuery.callback()', function (assert) {
     var config = new ConfigQuery();
     assert.ok(config.callback('{"foo": "bar"}'), 'returns true');
-    assert.deepEqual(config.getJSON('json'), {foo: 'bar'}, 'returns a valid object');
+    assert.deepEqual(config.getJSON('config'), {foo: 'bar'}, 'returns a valid object');
   });
 
   ConfigQuery.prototype.properties = orgProperties;

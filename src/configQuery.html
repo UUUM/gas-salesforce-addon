@@ -1,9 +1,9 @@
 <?!= include('_htmlHeader'); ?>
 <script>
   function callback() {
-    var json = $('#json').val();
+    var config = $('#config').val();
     try {
-      JSON.parse(json);
+      JSON.parse(config);
     } catch (error) {
       if (error instanceof SyntaxError) {
         alert('JSON Syntax Error');
@@ -14,7 +14,7 @@
     google.script.run
       .withSuccessHandler(success)
       .withFailureHandler(failure)
-      .configQueryCallback(json);
+      .configQueryCallback(config);
   }
 
   function success() {
@@ -27,7 +27,7 @@
 </script>
 
 <?!= include('_htmlBody'); ?>
-<textarea id="json" rows="35" cols="100"><?= json ?></textarea><br />
+<textarea id="config" rows="35" cols="100"><?= config ?></textarea><br />
 <button onclick="callback();">Ok</button>
 <button onclick="google.script.host.close();">Cancel</button>
 
