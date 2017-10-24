@@ -46,7 +46,7 @@ Fetch.prototype.queryAll = function queryAll() {
 };
 
 Fetch.prototype.queryByConfig = function queryByConfig(config) {
-  var sheet = SpreadsheetUtil.getSpreadsheet().getSheetByName(config.SheetName);
+  var sheet = SpreadsheetUtil.createSheetByName(config.SheetName);
   var qb = (new SalesforceLib.QueryBuilder()).setupByParams(config.FetchBuilderParams);
   var fieldList = qb.fieldList;
   var fieldNum = fieldList.length;
