@@ -28,6 +28,18 @@ Fetch.prototype.getConfig = function getConfig() {
   return this.config;
 };
 
+Fetch.prototype.getRowValues = function getRowValues(records, fieldList) {
+  var rowValues = [];
+  records.forEachNoFetch(function f(record) {
+    var rowValue = [];
+    for (var i = 0; i < fieldList.length; i++) {
+      rowValue.push(record.get(fieldList[i]));
+    }
+    rowValues.push(rowValue);
+  });
+  return rowValues;
+};
+
 Fetch.prototype.query = function query(key) {
   this.queryByConfig(this.getConfig()[key]);
 };
@@ -63,14 +75,15 @@ Fetch.prototype.queryByConfig = function queryByConfig(config) {
     row++;
   }
 
-  records.forEach(function f(record) {
-    var values = [];
-    for (var i = 0; i < fieldNum; i++) {
-      values[values.length] = record.get(fieldList[i]);
+  for (;;) {
+    var rowValues = this.getRowValues(records, fieldList);
+    sheet.getRange(row, column, rowValues.length, fieldNum).setValues(rowValues);
+    row += rowValues.length;
+
+    if (!records.fetchNext()) {
+      break;
     }
-    sheet.getRange(row, column, 1, fieldNum).setValues([values]);
-    row++;
-  });
+  }
 
   (new Notifier()).notify(config.SheetName + ' was updated. (' + row + ' rows)');
 
