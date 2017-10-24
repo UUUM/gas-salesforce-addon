@@ -18,7 +18,7 @@ var TestCommon = function TestCommon() {
   ConfigSchedule.prototype.properties = userProperties;
   ConfigSlack.prototype.properties = userProperties;
 
-  this.spreadsheetId = scriptProperties.getProperty('spreadsheetId');
+  SpreadsheetUtil.id = scriptProperties.getProperty('spreadsheetId');
 
   // clear slack setting
   (new ConfigSlack()).remove('webhookUrl');
@@ -35,15 +35,6 @@ TestCommon.prototype.getFetch = function getFetch() {
 
 TestCommon.prototype.getSFLib = function getSFLib() {
   return SFLib.getInstance();
-};
-
-TestCommon.prototype.getSpreadsheet = function getSpreadsheet() {
-  if (this.ss) {
-    return this.ss;
-  }
-
-  this.ss = SpreadsheetApp.openById(this.spreadsheetId);
-  return this.ss;
 };
 
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^(doGet|authCallback)$" }] */

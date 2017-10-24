@@ -28,6 +28,7 @@
     Obj: true,
     SFLib: true,
     SlackWebhook: true,
+    SpreadsheetUtil: true,
     TestCommon: true,
     testRunner: true,
     triggerCheckAuth: true,

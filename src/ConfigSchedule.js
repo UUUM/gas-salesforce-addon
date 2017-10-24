@@ -57,7 +57,7 @@ ConfigSchedule.prototype.removeTrigger = function removeTrigger() {
       continue;
     }
 
-    if (trigger.getTriggerSourceId() !== SpreadsheetApp.getActive().getId()) {
+    if (trigger.getTriggerSourceId() !== SpreadsheetUtil.getSpreadsheet().getId()) {
       continue;
     }
 

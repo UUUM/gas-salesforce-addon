@@ -1,6 +1,4 @@
 testRunner.functions.push(function (test, common) {
-  Fetch.prototype.ss = common.getSpreadsheet();
-
   var config = {
     Opportunity: {
       SheetName: 'Opportunity',
