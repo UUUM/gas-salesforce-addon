@@ -73,7 +73,7 @@ ConfigSchedule.prototype.getClockTriggers = function getClockTriggers() {
 ConfigSchedule.prototype.removeClockTriggers = function removeClockTriggers() {
   var triggers = this.getClockTriggers();
   for (var i = 0; i < triggers.length; i++) {
-    ScriptApp.removeTrigger(triggers[i]);
+    ScriptApp.deleteTrigger(triggers[i]);
   }
 };
 
