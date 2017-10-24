@@ -10,7 +10,10 @@ function configScheduleShow() {
 var ConfigSchedule = function ConfigSchedule() {
   Config.call(this);
   this.keyPrefix += 'Schedule';
-  this.triggerFunction = 'triggerFetchAll';
+
+  if (!this.triggerFunction) {
+    this.triggerFunction = 'triggerFetchAll';
+  }
 };
 
 ConfigSchedule.prototype = Object.create(Config.prototype);

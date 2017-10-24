@@ -18,6 +18,8 @@ var TestCommon = function TestCommon() {
   ConfigSchedule.prototype.properties = userProperties;
   ConfigSlack.prototype.properties = userProperties;
 
+  ConfigSchedule.prototype.triggerFunction = 'testTrigger';
+
   SpreadsheetUtil.id = scriptProperties.getProperty('spreadsheetId');
 
   // clear slack setting
