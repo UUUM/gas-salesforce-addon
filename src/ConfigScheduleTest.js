@@ -18,7 +18,7 @@ testRunner.functions.push(function (test) {
     assert.equal(trigger.getEventType(), ScriptApp.EventType.CLOCK, 'is a clock trigger');
     assert.equal(trigger.getHandlerFunction(), config.triggerFunction, 'has a valid handler function');
     assert.equal(trigger.getTriggerSource(), ScriptApp.TriggerSource.CLOCK, 'is a clock trigger');
-    ScriptApp.removeTrigger(trigger);
+    ScriptApp.deleteTrigger(trigger);
   });
 
   ConfigSchedule.prototype.properties = orgProperties;
