@@ -17,15 +17,14 @@ ConfigSchedule.prototype = Object.create(Config.prototype);
 ConfigSchedule.prototype.constructor = ConfigSchedule;
 
 ConfigSchedule.prototype.callback = function callback(schedule) {
-  if (!this.setupTrigger(schedule)) {
-    return false;
+  if (!this.setupClockTrigger(schedule)) {
+    throw new Error('Failed to create a clock trigger');
   }
 
   this.set('schedule', schedule);
-  return true;
 };
 
-ConfigSchedule.prototype.createTrigger = function createTrigger(schedule) {
+ConfigSchedule.prototype.createClockTrigger = function createClockTrigger(schedule) {
   var trigger = ScriptApp.newTrigger(this.triggerFunction).timeBased();
   switch (schedule) {
   case 'hourly':
@@ -40,11 +39,12 @@ ConfigSchedule.prototype.createTrigger = function createTrigger(schedule) {
   default:
     return false;
   }
-  trigger.create();
-  return true;
+  return trigger.create();
 };
 
-ConfigSchedule.prototype.removeTrigger = function removeTrigger() {
+ConfigSchedule.prototype.getClockTriggers = function getClockTriggers() {
+  var timeTriggers = [];
+
   var triggers = ScriptApp.getProjectTriggers();
   for (var i = 0; i < triggers.length; i++) {
     var trigger = triggers[i];
@@ -61,21 +61,29 @@ ConfigSchedule.prototype.removeTrigger = function removeTrigger() {
       continue;
     }
 
-    ScriptApp.deleteTrigger(trigger);
-    return true;
+    timeTriggers.push(trigger);
   }
 
-  return false;
+  return timeTriggers;
 };
 
-ConfigSchedule.prototype.setupTrigger = function setupTrigger(schedule) {
+ConfigSchedule.prototype.removeClockTriggers = function removeClockTriggers() {
+  var triggers = this.getClockTriggers();
+  for (var i = 0; i < triggers.length; i++) {
+    ScriptApp.removeTrigger(triggers[i]);
+  }
+};
+
+ConfigSchedule.prototype.setupClockTrigger = function setupClockTrigger(schedule) {
   switch (schedule) {
   case 'none':
-    return this.removeTrigger();
+    this.removeClockTriggers();
+    return true;
   case 'hourly':
   case 'daily':
   case 'weekly':
-    return this.createTrigger(schedule);
+    this.removeClockTriggers();
+    return this.createClockTrigger(schedule);
   default:
     return false;
   }
