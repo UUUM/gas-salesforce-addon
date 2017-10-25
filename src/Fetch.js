@@ -45,7 +45,11 @@ Fetch.prototype.getQueryValues = function getQueryValues(config) {
   });
 
   if (this.hasHeader && values.length > 0) {
-    values.push(fields);
+    var newFields = [];
+    for (var i = 0; i < fields.length; i++) {
+      newFields.push(fields[i].replace('.', ':'));
+    }
+    values.unshift(newFields);
   }
 
   return values;
