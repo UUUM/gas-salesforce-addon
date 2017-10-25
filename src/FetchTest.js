@@ -19,9 +19,7 @@ testRunner.functions.push(function (test, common) {
   test('new Fetch()', function (assert) {
     var fetch = new Fetch();
     assert.ok(fetch instanceof Fetch, 'creates a Fetch object');
-    assert.equal(fetch.column, 1, 'has a column property');
     assert.ok(fetch.hasHeader, 'has a hasHeader property');
-    assert.equal(fetch.row, 1, 'has a row property');
   });
 
   test('Fetch.getConfig()', function (assert) {
