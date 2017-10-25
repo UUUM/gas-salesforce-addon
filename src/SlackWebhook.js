@@ -11,9 +11,13 @@ var SlackWebhook = function SlackWebhook(webhookUrl) {
 };
 
 SlackWebhook.prototype.send = function send(text) {
+  var payload = {
+    link_names: 1,
+    text: text
+  };
   var option = Obj.merge(this.option, {
     method: 'post',
-    payload: JSON.stringify({ text: text })
+    payload: JSON.stringify(payload)
   });
   return UrlFetchApp.fetch(this.webhookUrl, option);
 };
